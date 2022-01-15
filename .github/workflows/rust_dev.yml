@@ -1,4 +1,4 @@
-# Does developer checks for a Rust codebase.
+# A comprehensive set of Rust checks intended to catch errors during development.
 #
 # Meant to be used with `on: [push, pull_request]`
 #

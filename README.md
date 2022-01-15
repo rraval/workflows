@@ -25,13 +25,9 @@ jobs:
     uses: rraval/workflows/.github/workflows/rust_dev.yml@master
 ```
 
-## [.github/workflows/rust_deploy_binary.yml](.github/workflows/rust_deploy_binary.yml)
+## [.github/workflows/rust_publish.yml](.github/workflows/rust_publish.yml)
 
-A fully automated release workflow for Rust binary crates:
-
-- Triggered by [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
-- Builds binary artifacts for Linux and Mac OS X targets and attaches them to the release for trivial binary installation.
-- Publishes the crate to [crates.io](https://crates.io) with [`cargo publish`](https://doc.rust-lang.org/cargo/commands/cargo-publish.html).
+Publishes the crate to [crates.io](https://crates.io) with [`cargo publish`](https://doc.rust-lang.org/cargo/commands/cargo-publish.html).
 
 ### Usage
 
@@ -39,18 +35,36 @@ Navigate to <https://crates.io/settings/tokens> and generate a new token specifi
 
 Follow the [GitHub instructions for creating a repository secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository) and create a secret named `CRATES_IO_TOKEN` with the value from <https://crates.io/settings/tokens>.
 
-Add a workflow file to your repository like `.github/workflows/deploy.yml` with the following contents, replacing `<NAME-OF-YOUR-CRATE-BINARY>` with the binary to build [as specified in the `Cargo.toml`](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#binaries) (if you're not doing anything fancy, this is usually the same as the [Cargo package name](https://doc.rust-lang.org/cargo/reference/manifest.html#the-name-field)).
+Add a workflow file to your repository like `.github/workflows/publish.yml` with the following contents:
 
 ```
-name: Deploy
+name: Publish
 on:
   release:
     types: [published]
 jobs:
   all:
-    uses: rraval/workflows/.github/workflows/rust_deploy_binary.yml@master
-    with:
-      CARGO_BINARY_NAME: <NAME-OF-YOUR-CRATE-BINARY>
+    uses: rraval/workflows/.github/workflows/rust_publish.yml@master
     secrets:
       CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
+```
+
+## [.github/workflows/rust_release_binary.yml](.github/workflows/rust_release_binary.yml)
+
+Builds Rust binaries (Linux and Mac OS X) and uploads them as artifacts to a [GitHub release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
+
+### Usage
+
+Add a workflow file to your repository like `.github/workflows/release.yml` with the following contents, replacing `<NAME-OF-YOUR-CRATE-BINARY>` with the binary to build [as specified in the `Cargo.toml`](https://doc.rust-lang.org/cargo/reference/cargo-targets.html#binaries) (if you're not doing anything fancy, this is usually the same as the [Cargo package name](https://doc.rust-lang.org/cargo/reference/manifest.html#the-name-field)).
+
+```
+name: Release
+on:
+  release:
+    types: [published]
+jobs:
+  main:
+    uses: rraval/workflows/.github/workflows/rust_release_binary.yml@master
+    with:
+      CARGO_BINARY_NAME: <NAME-OF-YOUR-CRATE-BINARY>
 ```
