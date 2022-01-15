@@ -3,7 +3,7 @@
 
 Repository for common workflows so I only have to bother getting it right once.
 
-# [.github/workflows/rust_dev.yml](.github/workflows/rust_dev.yml)
+## [.github/workflows/rust_dev.yml](.github/workflows/rust_dev.yml)
 
 A comprehensive set of Rust checks intended to catch errors during development:
 
