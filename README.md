@@ -13,8 +13,7 @@ A comprehensive set of Rust checks intended to catch errors during development:
 - Lints with [`clippy`](https://github.com/rust-lang/rust-clippy).
 - Checks formatting with [`rustfmt`](https://github.com/rust-lang/rustfmt).
 
-<details>
-<summary>Usage Guide</summary>
+### Usage
 
 Add a workflow file to your repository like `.github/workflows/dev.yml` with the following contents:
 
@@ -25,5 +24,3 @@ jobs:
   all:
     uses: rraval/workflows/.github/workflows/rust_dev.yml@master
 ```
-
-</details>
