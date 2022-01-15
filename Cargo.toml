@@ -3,7 +3,7 @@
 
 [package]
 name = "rraval-workflows"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 default-run = "main"
 description = "Example crate for @rraval's reusable GitHub workflows"
