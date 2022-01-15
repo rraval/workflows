@@ -22,7 +22,7 @@ name: Dev
 on: [push, pull_request]
 jobs:
   all:
-    uses: rraval/workflows/.github/workflows/rust_dev.yml@master
+    uses: rraval/workflows/.github/workflows/rust_dev.yml@v1
 ```
 
 ## [.github/workflows/rust_publish.yml](.github/workflows/rust_publish.yml)
@@ -44,7 +44,7 @@ on:
     types: [published]
 jobs:
   all:
-    uses: rraval/workflows/.github/workflows/rust_publish.yml@master
+    uses: rraval/workflows/.github/workflows/rust_publish.yml@v1
     secrets:
       CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
 ```
@@ -64,7 +64,7 @@ on:
     types: [published]
 jobs:
   main:
-    uses: rraval/workflows/.github/workflows/rust_release_binary.yml@master
+    uses: rraval/workflows/.github/workflows/rust_release_binary.yml@v1
     with:
       CARGO_BINARY_NAME: <NAME-OF-YOUR-CRATE-BINARY>
 ```

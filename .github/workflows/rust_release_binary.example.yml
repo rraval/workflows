@@ -4,11 +4,11 @@ on:
     types: [published]
 jobs:
   main:
-    uses: rraval/workflows/.github/workflows/rust_release_binary.yml@master
+    uses: rraval/workflows/.github/workflows/rust_release_binary.yml@v1
     with:
       CARGO_BINARY_NAME: main
 
   not-main:
-    uses: rraval/workflows/.github/workflows/rust_release_binary.yml@master
+    uses: rraval/workflows/.github/workflows/rust_release_binary.yml@v1
     with:
       CARGO_BINARY_NAME: not-main

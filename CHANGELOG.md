@@ -11,6 +11,8 @@ Backwards compatibility is defined as:
 
 ## [Unreleased]
 
+## [v1.0.0]
+
 An initial release based on Rust workflows in https://github.com/rraval/git-nomad.
 
 ### Added

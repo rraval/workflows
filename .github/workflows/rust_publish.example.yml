@@ -4,6 +4,6 @@ on:
     types: [published]
 jobs:
   all:
-    uses: rraval/workflows/.github/workflows/rust_publish.yml@master
+    uses: rraval/workflows/.github/workflows/rust_publish.yml@v1
     secrets:
       CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
