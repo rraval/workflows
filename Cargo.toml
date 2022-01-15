@@ -6,6 +6,9 @@ name = "rraval-workflows"
 version = "0.1.0"
 edition = "2021"
 default-run = "main"
+description = "Example crate for @rraval's reusable GitHub workflows"
+repository = "https://github.com/rraval/workflows"
+license = "MIT"
 
 # This would be inferred by target auto-discovery, but it helps to be explicit
 # for the purposes of an example.
