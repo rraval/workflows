@@ -25,6 +25,15 @@ jobs:
     uses: rraval/workflows/.github/workflows/rust_dev.yml@v1
 ```
 
+### Demo
+
+See [.github/workflows/rust_dev.example.yml](.github/workflows/rust_dev.example.yml) for a demo that checks a toy Rust crate from this repository.
+
+- [A commit passing all checks](https://github.com/rraval/workflows/actions/runs/1702145604)
+- [A pull request that fails most checks](https://github.com/rraval/workflows/actions/runs/1702179404)
+- [Coverage for toy example](https://coveralls.io/builds/45655806)
+- [Coverage for a real project: `git-nomad`](https://coveralls.io/builds/45651584)
+
 ## [.github/workflows/rust_publish.yml](.github/workflows/rust_publish.yml)
 
 Publishes the crate to [crates.io](https://crates.io) with [`cargo publish`](https://doc.rust-lang.org/cargo/commands/cargo-publish.html).
@@ -49,6 +58,12 @@ jobs:
       CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
 ```
 
+### Demo
+
+See [.github/workflows/rust_publish.example.yml](.github/workflows/rust_publish.example.yml) for a demo that publishes a toy Rust crate from this repository.
+
+- [Automatic `cargo publish`](https://github.com/rraval/workflows/actions/runs/1702147499) for <https://crates.io/crates/rraval-workflows>
+
 ## [.github/workflows/rust_release_binary.yml](.github/workflows/rust_release_binary.yml)
 
 Builds Rust binaries (Linux and Mac OS X) and uploads them as artifacts to a [GitHub release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository).
@@ -68,3 +83,9 @@ jobs:
     with:
       CARGO_BINARY_NAME: <NAME-OF-YOUR-CRATE-BINARY>
 ```
+
+### Demo
+
+See [.github/workflows/rust_release_binary.example.yml](.github/workflows/rust_release_binary.example.yml) for a demo that builds and uploads 2 binaries for a toy Rust crate from this repository.
+
+- [Automatic `cargo build`](https://github.com/rraval/workflows/actions/runs/1702147498) of release [v1.0.0-rc2](https://github.com/rraval/workflows/releases/tag/v1.0.0-rc2).
