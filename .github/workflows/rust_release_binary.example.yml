@@ -1,0 +1,14 @@
+name: Rust Release Binary Example
+on:
+  release:
+    types: [published]
+jobs:
+  main:
+    uses: rraval/workflows/.github/workflows/rust_release_binary.yml@master
+    with:
+      CARGO_BINARY_NAME: main
+
+  not-main:
+    uses: rraval/workflows/.github/workflows/rust_release_binary.yml@master
+    with:
+      CARGO_BINARY_NAME: not-main

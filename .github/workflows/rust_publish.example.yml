@@ -1,0 +1,9 @@
+name: Rust Publish Example
+on:
+  release:
+    types: [published]
+jobs:
+  all:
+    uses: rraval/workflows/.github/workflows/rust_publish.yml@master
+    secrets:
+      CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
