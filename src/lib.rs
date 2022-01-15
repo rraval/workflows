@@ -1,4 +1,4 @@
-pub const NAME: &str = "rraval workflow lib";
+pub const NAME: &str = "";
 
 #[cfg(test)]
 mod test {
