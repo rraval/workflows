@@ -1,0 +1,23 @@
+# This is an example Rust package meant to demonstrate the workflows.
+# It contains a single library crate and 2 binary crates.
+
+[package]
+name = "rraval-workflows"
+version = "0.1.0"
+edition = "2021"
+default-run = "main"
+
+# This would be inferred by target auto-discovery, but it helps to be explicit
+# for the purposes of an example.
+# https://doc.rust-lang.org/cargo/reference/cargo-targets.html#target-auto-discovery
+# https://doc.rust-lang.org/cargo/guide/project-layout.html
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
+[[bin]]
+name = "not-main"
+path = "src/bin/not_main.rs"
