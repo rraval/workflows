@@ -1,4 +1,4 @@
-# Automatically deploys binaries to GitHub and crates.io for a Rust codebase.
+# Builds Rust binaries and attaches them as artifacts to a GitHub release.
 #
 # Meant to be used
 #   on:
@@ -7,19 +7,14 @@
 #
 # Heavily inspired by:
 # https://github.com/AlexanderThaller/hstdb/blob/main/.github/workflows/rust_release.yml
-# https://github.com/actions-rs/meta/issues/6
-name: Rust Deploy Binary
+name: Rust Release Binary
 on:
   workflow_call:
     inputs:
       CARGO_BINARY_NAME:
         required: true
         type: string
-        description: "Name of the binary to build and publish"
-    secrets:
-      CRATES_IO_TOKEN:
-        required: true
-        description: "Token from https://crates.io/settings/tokens for `cargo publish`"
+        description: "Name of the binary to build with `cargo build --bin`"
 
 env:
   CARGO_TERM_COLOR: always
@@ -39,7 +34,7 @@ jobs:
             target: aarch64-apple-darwin
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - uses: actions-rs/toolchain@v1
         with:
@@ -67,12 +62,3 @@ jobs:
           asset_path: target/${{ matrix.target }}/release/${{ inputs.CARGO_BINARY_NAME }}.gz
           upload_url: ${{ github.event.release.upload_url }}
           asset_content_type: application/gzip
-
-  cargo-publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - run: cargo login "$CRATES_IO_TOKEN"
-        env:
-          CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
-      - run: cargo publish
