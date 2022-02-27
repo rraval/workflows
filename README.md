@@ -19,7 +19,12 @@ Add a workflow file to your repository like `.github/workflows/dev.yml` with the
 
 ```
 name: Dev
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore:
+      - "dependabot/**"
+  pull_request:
+    types: [opened, reopened]
 jobs:
   all:
     uses: rraval/workflows/.github/workflows/rust_dev.yml@v1
