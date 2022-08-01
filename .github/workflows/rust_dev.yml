@@ -39,13 +39,13 @@ jobs:
           override: true
           components: llvm-tools-preview
       - name: Install grcov
-        run: "curl -L https://github.com/mozilla/grcov/releases/download/v0.8.2/grcov-linux-x86_64.tar.bz2 | tar -C ~/ -xjv"
+        run: "curl -L https://github.com/mozilla/grcov/releases/download/v0.8.11/grcov-x86_64-unknown-linux-gnu.tar.bz2 | tar -C ~/ -xjv"
       - uses: actions-rs/cargo@v1
         with:
           command: test
           args: --all-features --no-fail-fast
         env:
-          RUSTFLAGS: '-Zinstrument-coverage'
+          RUSTFLAGS: '-C instrument-coverage'
           LLVM_PROFILE_FILE: 'report-%p-%m.profraw'
       - name: Run grcov
         run: "~/grcov . --binary-path target/debug/deps/ -s . -t lcov --branch --ignore-not-existing --ignore '../**' --ignore '/*' --excl-line '(?:unreachable!)|(?:#\\[derive\\(.*\\)\\])' -o coverage.lcov"
