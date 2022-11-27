@@ -1,3 +1,5 @@
+//! This is the library.
+
 pub const NAME: &str = "rraval workflow lib";
 
 #[cfg(test)]
