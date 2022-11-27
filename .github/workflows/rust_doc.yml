@@ -1,0 +1,44 @@
+# Builds documentation with `cargo doc` and just the artifact to a branch (with no other history).
+#
+# Meant to be used with `on: [push]`
+name: Rust Doc
+on:
+  workflow_call:
+    inputs:
+      branch:
+        description: The branch to push the documentation to
+        default: gh-pages
+        required: false
+        type: string
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  doc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          # nightly only because of -Zunstable-options below
+          # We could use stable with the RUSTC_BOOTSTRAP=1 hack but whatever
+          toolchain: nightly
+          override: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: doc
+          args: --all-features
+        env:
+          # -Zunstable-options only because of --enable-index-page
+          # https://github.com/rust-lang/rust/issues/73185
+          RUSTDOCFLAGS: '-Zunstable-options -D warnings --enable-index-page'
+      - uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: ${{ inputs.branch }}
+          FOLDER: target/doc
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SQUASH_HISTORY: true
+          SKIP_EMPTY_COMMITS: true

@@ -39,6 +39,43 @@ See [.github/workflows/rust_dev.example.yml](.github/workflows/rust_dev.example.
 - [Coverage for toy example](https://coveralls.io/builds/45655806)
 - [Coverage for a real project: `git-nomad`](https://coveralls.io/builds/45651584)
 
+## [.github/workflows/rust_doc.yml](.github/workflows/rust_doc.yml)
+
+Automatically builds documentation with `cargo doc` and pushes the generated documentation to a separate branch.
+
+Each build force pushes a new commit containing only documentation artifacts as the sole commit to the branch, allowing git garbage collection to auomatically free up data from previous builds.
+
+The static files includes [a toplevel `index.html` page](https://doc.rust-lang.org/rustdoc/unstable-features.html#--index-page-provide-a-top-level-landing-page-for-docs) and can readily be deployed to providers like [GitHub Pages](https://pages.github.com/).
+
+### Usage
+
+Add a workflow file to your repository like `.github/workflows/doc.yml` with the following contents:
+
+```
+name: Doc
+on:
+  push:
+    branches:
+      - main
+jobs:
+  all:
+    uses: rraval/workflows/.github/workflows/rust_doc.yml@v1
+```
+
+Then, on the GitHub repository:
+
+- Navigate to `Settings`
+- Click on `Pages` in the left sidebar
+- In the `Build and deployment` section
+- Souce: `Deploy from a branch`
+- Branch: `gh-pages` with `/ (root)`
+
+### Demo
+
+See [.github/workflows/rust_doc.example.yml](.github/workflows/rust_doc.example.yml) for a demo that generates documentation for a toy Rust project in this repo (with many internal crates).
+
+The generates documentation is viewable at https://rraval.github.io/workflows/
+
 ## [.github/workflows/rust_publish.yml](.github/workflows/rust_publish.yml)
 
 Publishes the crate to [crates.io](https://crates.io) with [`cargo publish`](https://doc.rust-lang.org/cargo/commands/cargo-publish.html).

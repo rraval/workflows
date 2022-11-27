@@ -1,0 +1,8 @@
+name: Rust Doc Example
+on:
+  push:
+    branches:
+      - v1
+jobs:
+  all:
+    uses: rraval/workflows/.github/workflows/rust_doc.yml@v1
