@@ -22,18 +22,14 @@ jobs:
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          # nightly only because of -Zunstable-options below
-          # We could use stable with the RUSTC_BOOTSTRAP=1 hack but whatever
-          toolchain: nightly
+          toolchain: stable
           override: true
       - uses: actions-rs/cargo@v1
         with:
           command: doc
           args: --all-features
         env:
-          # -Zunstable-options only because of --enable-index-page
-          # https://github.com/rust-lang/rust/issues/73185
-          RUSTDOCFLAGS: '-Zunstable-options -D warnings --enable-index-page'
+          RUSTDOCFLAGS: '-D warnings'
       - uses: s0/git-publish-subdir-action@develop
         env:
           REPO: self
