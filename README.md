@@ -41,11 +41,9 @@ See [.github/workflows/rust_dev.example.yml](.github/workflows/rust_dev.example.
 
 ## [.github/workflows/rust_doc.yml](.github/workflows/rust_doc.yml)
 
-Automatically builds documentation with `cargo doc` and pushes the generated documentation to a separate branch.
+Automatically builds documentation with `cargo doc` and pushes the generated documentation to a separate branch. By default, uses the `gh-pages` branch which allows seamless integration with [GitHub Pages](https://pages.github.com/).
 
 Each build force pushes a new commit containing only documentation artifacts as the sole commit to the branch, allowing git garbage collection to auomatically free up data from previous builds.
-
-The static files includes [a toplevel `index.html` page](https://doc.rust-lang.org/rustdoc/unstable-features.html#--index-page-provide-a-top-level-landing-page-for-docs) and can readily be deployed to providers like [GitHub Pages](https://pages.github.com/).
 
 ### Usage
 
@@ -62,7 +60,7 @@ jobs:
     uses: rraval/workflows/.github/workflows/rust_doc.yml@v1
 ```
 
-Then, on the GitHub repository:
+Then, enable GitHub Pages on the GitHub repository:
 
 - Navigate to `Settings`
 - Click on `Pages` in the left sidebar
@@ -74,7 +72,7 @@ Then, on the GitHub repository:
 
 See [.github/workflows/rust_doc.example.yml](.github/workflows/rust_doc.example.yml) for a demo that generates documentation for a toy Rust project in this repo (with many internal crates).
 
-The generates documentation is viewable at https://rraval.github.io/workflows/
+The generates documentation is viewable at https://rraval.github.io/workflows/main/
 
 ## [.github/workflows/rust_publish.yml](.github/workflows/rust_publish.yml)
 
