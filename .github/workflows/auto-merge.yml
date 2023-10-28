@@ -1,0 +1,16 @@
+name: Automerge PRs
+on:
+  pull_request_target:
+
+jobs:
+  enable_automerge:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      # contents: write
+    if: github.actor == 'rraval'
+    steps:
+      - name: Enable automerge
+        run: gh pr merge --rebase --auto "{{ github.event.number }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
