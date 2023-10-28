@@ -3,4 +3,5 @@ on: pull_request_target
 jobs:
   all:
     uses: rraval/workflows/.github/workflows/auto-merge-pr.yml@v1
-    if: github.actor == 'rraval'
+    # Lock this down to prevent drive by PRs from mutating the repository
+    if: github.actor == 'rraval' && github.event.pull_request.base.ref == 'automerge-demo-base'
