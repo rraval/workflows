@@ -4,4 +4,5 @@ jobs:
   all:
     uses: rraval/workflows/.github/workflows/auto-merge-pr.yml@v1
     # Lock this down to prevent drive by PRs from mutating the repository
+    # This line was added by an auto-merged PR
     if: github.actor == 'rraval' && github.event.pull_request.base.ref == 'automerge-demo-base'
