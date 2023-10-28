@@ -1,0 +1,15 @@
+name: Auto-merge PR
+on:
+  workflow_call:
+
+jobs:
+  enable_automerge:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - name: Enable automerge
+        run: gh pr merge --repo "${{ github.repository }}" --rebase --auto "${{ github.event.number }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
