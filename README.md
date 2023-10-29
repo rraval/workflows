@@ -34,8 +34,6 @@ jobs:
 
 See [.github/workflows/rust_dev.example.yml](.github/workflows/rust_dev.example.yml) for a demo that checks a toy Rust crate from this repository.
 
-- [A commit passing all checks](https://github.com/rraval/workflows/actions/runs/1702145604)
-- [A pull request that fails most checks](https://github.com/rraval/workflows/actions/runs/1702179404)
 - [Coverage for toy example](https://coveralls.io/builds/45655806)
 - [Coverage for a real project: `git-nomad`](https://coveralls.io/builds/45651584)
 
@@ -153,3 +151,5 @@ jobs:
 ### Demo
 
 See [.github/workflows/auto-merge-pr.example.yml](.github/workflows/auto-merge-pr.example.yml) for a demo only allows merges into the `automerge-demo-base` branch.
+
+- [A pull request that was merged automatically.](https://github.com/rraval/workflows/pull/4)
