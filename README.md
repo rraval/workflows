@@ -129,3 +129,27 @@ jobs:
 See [.github/workflows/rust_release_binary.example.yml](.github/workflows/rust_release_binary.example.yml) for a demo that builds and uploads 2 binaries for a toy Rust crate from this repository.
 
 - [Automatic `cargo build`](https://github.com/rraval/workflows/actions/runs/1702147498) of release [v1.0.0-rc2](https://github.com/rraval/workflows/releases/tag/v1.0.0-rc2).
+
+## [.github/workflows/auto-merge-pr.yml](.github/workflows/auto-merge-pr.yml)
+
+Enables auto-merge for PRs if they satisfy all other checks. Useful for evergreen repositories that want to automate dependabot PRs.
+
+### Usage
+
+Add a workflow file to your repository like `.github/workflows/auto-merge.yml` with the following contents:
+
+```
+name: Auto-merge dependabot PRs
+on: pull_request_target
+jobs:
+  all:
+    uses: rraval/workflows/.github/workflows/auto-merge-pr.yml@v1
+    if: github.actor == 'dependabot[bot]'
+```
+
+> [!WARNING]
+> Verify the `if` condition on the job. Mistakes can allow anybody to merge PRs and compromise the repo.
+
+### Demo
+
+See [.github/workflows/auto-merge-pr.example.yml](.github/workflows/auto-merge-pr.example.yml) for a demo only allows merges into the `automerge-demo-base` branch.
